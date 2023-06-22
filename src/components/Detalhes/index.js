@@ -3,10 +3,12 @@ import './detalhes.css';
 
 export default function Detalhes({ dados }) {
 
+    console.log(dados)
+
     let produto = (
         [
             {
-                codigo: dados.codigo,
+                codigo: dados._id,
                 nome: dados.nome,
                 preco: dados.preco,
                 imagem: dados.imagem,
@@ -21,18 +23,18 @@ export default function Detalhes({ dados }) {
 // -------------------     NAO MEXA POIS FUNCIONA NAO SEI COMO, AUTORIA MINHA -NATHAN     -------------------
 // ----------------------------------------------------------------------------------------------------------
         let data = localStorage.getItem("carrinho");
-        if (data) {
+        if (data) { //Verifica se tem algo no carrinho
             let storedCarrinho = JSON.parse(data);
-            if(storedCarrinho.find(item => item.codigo == dados.codigo)){
+            if(storedCarrinho.find(item => item.codigo == dados._id)){//Verifica se ja existe o produto no carrinho para add quantidade
                 storedCarrinho.forEach(prod => {
-                  if(prod.codigo == dados.codigo){
+                  if(prod.codigo == dados._id){
                     prod.quantidade++;
                   }  
                 });
-            }else{
+            }else{//Adiciona um novo produto caso nao exista o mesmo no carrinho
                 storedCarrinho.push(
                     {
-                        codigo: dados.codigo,
+                        codigo: dados._id,
                         nome: dados.nome,
                         preco: dados.preco,
                         imagem: dados.imagem,

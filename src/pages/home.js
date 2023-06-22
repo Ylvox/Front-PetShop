@@ -16,6 +16,8 @@ export default function Home() {
             .catch(err => console.error(err))
     }, []);
 
+    //console.log(data);
+
     return (
         <div className='pb-5'>
             <Menu menu='home-produto' />

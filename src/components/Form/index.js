@@ -25,7 +25,7 @@ export default function form({ tipo }) {
 
                         api.post('/login', bodyParam)
                             .then((response) => {
-                                console.log(response.data)
+                                //console.log(response.data)
                                 alert(" Token gerado para o usuario " + response.data.nome)
                                 localStorage.setItem("token", response.data.token);
                                 navigate("/");
@@ -100,6 +100,7 @@ export default function form({ tipo }) {
                         }
                     }
 
+                    //Putaria do matheus, poderia usar so o e.target.value no proprio onchange em muitas funcoes abaixo
                     function handNomeCartaoChange(event) {
                         setNomeCartao(event.target.value);
                     }

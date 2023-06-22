@@ -40,21 +40,24 @@ export default function Carrinho() {
         if (storedToken) {
             try {
                 const data = jwt(storedToken)
-                console.log(data)
+                //console.log(data)
                 if (dataProd) {
                     const listaProdutos = JSON.parse(dataProd);
                     let bodyParam = {
                         custo: value.toFixed(2),
                         produtos: [],
-                        cliente: storedToken
+                        cliente: data._id
                     }
-                    listaProdutos.forEach(prod => {
-                        bodyParam.produtos.push(prod);
+                    listaProdutos.forEach(prod => { //Carregando produtos do carrinho para o json
+                        bodyParam.produtos.push({
+                            produtoId:prod.codigo,
+                            quantidade:prod.quantidade
+                        });
                     });
-                    console.log(bodyParam);
-                    api.post('/pedido', bodyParam)
+                    //console.log(bodyParam);
+                    api.post('/pedido', bodyParam, {headers: {Authorization: 'Bearer '+storedToken}})
                         .then((response) => {
-                            console.log(response.data)
+                            //console.log(response.data)
                             alert(response.data.msg)
                         })
                         .catch((err) => {
