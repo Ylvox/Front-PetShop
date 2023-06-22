@@ -50,7 +50,7 @@ export default function Carrinho() {
                     }
                     listaProdutos.forEach(prod => { //Carregando produtos do carrinho para o json
                         bodyParam.produtos.push({
-                            produtoId:prod.codigo,
+                            produto:prod.codigo,
                             quantidade:prod.quantidade
                         });
                     });
